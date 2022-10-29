@@ -1,3 +1,26 @@
+docker pull wattpool/verusccminer
+git clone https://github.com/wattpool/verus-ccminer-dockerized.git
+cd verus-ccminer-dockerized
+docker build -t verusccminer .
+
+#
+# Config file for the ccminer Dockerfile
+#
+
+# configure the pool to use
+POOL_HOST=pool.verus.io
+POOL_PORT=9999
+
+# set payout address and worker name
+PAYOUT_ADDRESS=iBSUZSgXHEGGz65GTT6BGgchtkTHoFBs57
+WORKER_NAME=DockerTest
+
+# if you just want to use all available threads,
+# for linux, you can use $(nproc)
+# for OSX, you can use $(sysctl -n hw.ncpu)
+# otherwise set to your desired number
+CCMINER_THREADS=$(nproc)
+
 #!/bin/bash
 
 . ./ccminer.conf
