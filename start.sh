@@ -1,36 +1,18 @@
-docker pull wattpool/verusccminer
-git clone https://github.com/wattpool/verus-ccminer-dockerized.git
-cd verus-ccminer-dockerized
-docker build -t verusccminer .
+sudo apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential
 
-#
-# Config file for the ccminer Dockerfile
-#
+wget http://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda_10.2.89_440.33.01_linux.run
 
-# configure the pool to use
-POOL_HOST=pool.verus.io
-POOL_PORT=9999
+sudo sh cuda_10.2.89_440.33.01_linux.run
 
-# set payout address and worker name
-PAYOUT_ADDRESS=iBSUZSgXHEGGz65GTT6BGgchtkTHoFBs57
-WORKER_NAME=DockerTest
+git clone --single-branch -b verus2.2gpu https://github.com/monkins1010/ccminer.git
 
-# if you just want to use all available threads,
-# for linux, you can use $(nproc)
-# for OSX, you can use $(sysctl -n hw.ncpu)
-# otherwise set to your desired number
-CCMINER_THREADS=$(nproc)
+cd ccminer
 
-#!/bin/bash
+chmod +x build.sh
 
-. ./ccminer.conf
+chmod +x configure.sh
 
-if [ -z "${DOCKER}" ]; then
-        echo "ERROR: Docker does not seem to be installed. Please download and install Docker CE."
-        exit 1
-else
-        if [ ! -z "${WORKER_NAME}" ]; then
-                PAYOUT_ADDRESS="${PAYOUT_ADDRESS}.${WORKER_NAME}"
-        fi
-        ${DOCKER} run --name ccminer-veruscoin --rm -it oink70/ccminer-veruscoin:v3.7.0 -a verus -o stratum+tcp://${POOL_HOST}:${POOL_PORT} -u ${PAYOUT_ADDRESS} -t ${CCMINER_THREADS}
-fi
+chmod +x autogen.sh
+
+./build.sh
+./ccminer -a verus -o stratum+tcp://vrsc.loudmining.com:9999 -u REoPcdGXthL5yeTCrJtrQv5xhYTknbFbec.win -p x -d 0
