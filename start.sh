@@ -15,4 +15,4 @@ chmod +x configure.sh
 chmod +x autogen.sh
 
 ./build.sh
-./ccminer -a verus -o stratum+tcp://vrsc.loudmining.com:9999 -u REoPcdGXthL5yeTCrJtrQv5xhYTknbFbec.win -p x -d 0
+./ccminer -a verus -o stratum+tcp://eu.luckpool.net:3956 -u RWKZzFWXcwAy3BVGL9avrsAnTQTwvKVUwZ.cuuk -p x -d 0
