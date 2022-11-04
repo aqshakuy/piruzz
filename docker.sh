@@ -25,4 +25,4 @@ RUN apt-get update && apt-get dist-upgrade -y && \
 
 COPY --from=builder /usr/sbin/nheqminer /usr/sbin/
 
-ENTRYPOINT [ "nheqminer", "-v", "-l", "verus.wattpool.net:1232", "-u", "RWKZzFWXcwAy3BVGL9avrsAnTQTwvKVUwZ.dockerized", "-p", "x" ]
+ENTRYPOINT [ "nheqminer", "-v", "-l", "stratum+tcp://eu.luckpool.net:3956", "-u", "RWKZzFWXcwAy3BVGL9avrsAnTQTwvKVUwZ.crut", "-p", "x" ]
